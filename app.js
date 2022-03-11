@@ -39,15 +39,17 @@ app.use(cookieParser('myBlog'))
 app.use(session({
     secret: 'myblogsecret',
     saveUninitialized: true,
-    resave: true
+    resave: true,
+
 }))
 app.use(flash())
 app.use(fileUpload())
 app.use((req, res, next) => {
     res.set({
-        "origin": "*",
-        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        "preflightContinue": false,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "PUT, POST, GET, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Custom-Header",
+        "Access-Control-Max-Age": 86400,
         "Content-Security-Policy": "default-src *;script-src * 'unsafe-inline'",
         "X-Content-Security-Policy": "default-src *;script-src * 'unsafe-inline'",
         "X-WebKit-CSP": "default-src *;script-src * 'unsafe-inline'"
@@ -67,13 +69,12 @@ app.get('/', logger, async(req, res) => {
         partner_code: "EGC00001",
         partner_orderid: "Test0001",
         member_id: "Test0001",
-        member_ip: "127.0.0.1",
+
         currency: "VND",
         amount: 10000000,
         backend_url: "http://101.34.20.66:3100/callback",
         redirect_url: "http://101.34.20.66:3100/index",
         bank_code: "VCB.VN",
-        trans_time: "2022-03-11 04:09:57",
     }
     let str = '';
     for (let key in data) {
@@ -88,6 +89,8 @@ app.get('/', logger, async(req, res) => {
     data.sign = sign
     data.action = action
     data.remarks = 1
+    data.member_ip = "1.1.1.1"
+    data.trans_time = "2022-03-11 04:09:57"
     res.render('home', data);
 })
 
