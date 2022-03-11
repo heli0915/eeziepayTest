@@ -69,6 +69,7 @@ app.get('/', logger, async(req, res) => {
         amount: 100000,
         backend_url: "http://www.returnlocation.com/server.asp",
         redirect_url: "http://www.returnlocation.com/browser.asp",
+        bank_code: "",
         trans_time: "2019-06-06 13:10:00",
         remarks: 'test'
     }
