@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 import fetch from 'node-fetch'
-import queryString from 'querystring'
+//import queryString from 'querystring'
 import { createHash } from 'crypto'
 import express from 'express'
 import helmet from 'helmet'
@@ -72,8 +72,13 @@ app.get('/', logger, async(req, res) => {
         bank_code: "VCB.VN",
         trans_time: "2022-03-11 11:48:00",
     }
+    let str = '';
+    for (let key in data) {
+        str += `${key}=${data[key]}&`
+    }
+    str += `key=${key}`
     let hash = createHash('sha1')
-    hash.update(queryString.stringify(data) + `&key=${key}`)
+    hash.update(str)
     data.sign = hash.digest('hex').toLocaleUpperCase()
     data.action = action
     data.remarks = 1
