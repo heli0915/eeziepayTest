@@ -72,7 +72,7 @@ app.get('/', logger, async(req, res) => {
         amount: 10000000,
         backend_url: "http://101.34.20.66:3100/callback",
         redirect_url: "http://101.34.20.66:3100/index",
-        bank_code: "VCB.VN",
+        bank_code: "VTB.VN",
     }
     let str = '';
     for (let key in data) {
