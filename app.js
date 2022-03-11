@@ -93,7 +93,7 @@ app.get('/', logger, async(req, res) => {
 })
 
 app.get('/callback', (req, res) => {
-    console.log(req)
+    res.send('callback ok')
 })
 
 app.get('/index', (req, res) => {
