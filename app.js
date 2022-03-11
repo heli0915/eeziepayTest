@@ -45,6 +45,9 @@ app.use(flash())
 app.use(fileUpload())
 app.use((req, res, next) => {
     res.set({
+        "origin": "*",
+        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+        "preflightContinue": false,
         "Content-Security-Policy": "default-src *;script-src * 'unsafe-inline'",
         "X-Content-Security-Policy": "default-src *;script-src * 'unsafe-inline'",
         "X-WebKit-CSP": "default-src *;script-src * 'unsafe-inline'"
@@ -62,24 +65,27 @@ app.get('/', logger, async(req, res) => {
     const data = {
         service_version: "3.0",
         partner_code: "EGC00001",
-        partner_orderid: "20190606004030",
-        member_id: "00002",
-        member_ip: "1.1.1.1",
+        partner_orderid: "GODANCE0001",
+        member_id: "GODANCE",
+        member_ip: "127.0.0.1",
         currency: "VND",
-        amount: 10000,
-        backend_url: "http://101.34.20.66:3100/callback",
-        redirect_url: "http://101.34.20.66:3100/index",
+        amount: 10000000,
+        backend_url: "http://localhost:8081/result.php",
+        redirect_url: "http://localhost:8081/notify.php",
         bank_code: "VCB.VN",
-        trans_time: "2022-03-11 11:48:00",
+        trans_time: "2022-03-11 04:09:57",
     }
     let str = '';
     for (let key in data) {
         str += `${key}=${data[key]}&`
     }
     str += `key=${key}`
+    console.log(str)
     let hash = createHash('sha1')
     hash.update(str)
-    data.sign = hash.digest('hex').toLocaleUpperCase()
+    let sign = hash.digest('hex').toLocaleUpperCase()
+    console.log(sign)
+    data.sign = sign
     data.action = action
     data.remarks = 1
     res.render('home', data);
@@ -114,7 +120,7 @@ function logger(req, res, next) {
     console.log(req.originalUrl)
     next()
 }
-
+console.log(process.env.WEB_PORT)
 app.listen(process.env.WEB_PORT)
 
 
