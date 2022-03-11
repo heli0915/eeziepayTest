@@ -65,13 +65,13 @@ app.get('/', logger, async(req, res) => {
     const data = {
         service_version: "3.0",
         partner_code: "EGC00001",
-        partner_orderid: "GODANCE0001",
-        member_id: "GODANCE",
+        partner_orderid: "Test0001",
+        member_id: "Test0001",
         member_ip: "127.0.0.1",
         currency: "VND",
         amount: 10000000,
-        backend_url: "http://localhost:8081/result.php",
-        redirect_url: "http://localhost:8081/notify.php",
+        backend_url: "http://101.34.20.66:3100/callback",
+        redirect_url: "http://101.34.20.66:3100/index",
         bank_code: "VCB.VN",
         trans_time: "2022-03-11 04:09:57",
     }
