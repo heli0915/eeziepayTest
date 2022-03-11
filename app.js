@@ -71,12 +71,12 @@ app.get('/', logger, async(req, res) => {
         redirect_url: "http://101.34.20.66:3100/index",
         bank_code: "VCB.VN",
         trans_time: "2022-03-11 11:48:00",
-        remarks: 'test'
     }
     let hash = createHash('sha1')
     hash.update(queryString.stringify(data) + `&key=${key}`)
     data.sign = hash.digest('hex').toLocaleUpperCase()
     data.action = action
+    data.remarks = 1
     res.render('home', data);
 })
 
