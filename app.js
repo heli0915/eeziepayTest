@@ -40,7 +40,6 @@ app.use(session({
     secret: 'myblogsecret',
     saveUninitialized: true,
     resave: true,
-
 }))
 app.use(flash())
 app.use(fileUpload())
@@ -67,9 +66,8 @@ app.get('/', logger, async(req, res) => {
     const data = {
         service_version: "3.0",
         partner_code: "EGC00001",
-        partner_orderid: "Test0001",
+        partner_orderid: "Test0001" + new Date().getTime(),
         member_id: "Test0001",
-
         currency: "VND",
         amount: 10000000,
         backend_url: "http://101.34.20.66:3100/callback",
