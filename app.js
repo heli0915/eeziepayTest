@@ -63,18 +63,18 @@ app.get('/', logger, async(req, res) => {
         service_version: "3.0",
         partner_code: "EGC00001",
         partner_orderid: "20190606004030",
-        member_id: "00001",
+        member_id: "00002",
         member_ip: "1.1.1.1",
         currency: "VND",
-        amount: 100000,
-        backend_url: "http://www.returnlocation.com/server.asp",
-        redirect_url: "http://www.returnlocation.com/browser.asp",
+        amount: 10000,
+        backend_url: "http://101.34.20.66:3100/callback",
+        redirect_url: "http://101.34.20.66:3100/index",
         bank_code: "VCB.VN",
-        trans_time: "2019-06-06 13:10:00",
+        trans_time: "2022-03-11 11:48:00",
         remarks: 'test'
     }
     let hash = createHash('sha1')
-    hash.update(JSON.stringify(data) + `&key=${key}`)
+    hash.update(queryString.stringify(data) + `&key=${key}`)
     data.sign = hash.digest('hex').toLocaleUpperCase()
     data.action = action
     res.render('home', data);
@@ -82,6 +82,10 @@ app.get('/', logger, async(req, res) => {
 
 app.get('/callback', (req, res) => {
     console.log(req)
+})
+
+app.get('/index', (req, res) => {
+    res.send('ok')
 })
 
 app.get('/error', (req, res) => {
