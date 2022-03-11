@@ -93,8 +93,9 @@ app.get('/', logger, async(req, res) => {
 })
 
 app.post('/callback', (req, res) => {
-    res.json(req.body)
-    res.send(req.originalUrl + ' callback ok')
+    console.log('-------------------------')
+    console.log(JSON.stringify(req.body))
+    console.log('-------------------------')
 })
 
 app.get('/callback', (req, res) => {
