@@ -1,0 +1,34 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <form method="POST" name="myform" action=<%=action %> id="myform" target="_blank">
+            <input type="text" hidden name="service_version" value=<%=service_version %> />
+            <input type="text" hidden name="partner_code" value=<%=partner_code %> />
+            <input type="text" hidden name="partner_orderid" value=<%=partner_orderid %>/>
+            <input type="text" hidden name="member_id" value=<%=member_id %>/>
+            <input type="text" hidden name="currency" value=<%=currency %> />
+            <input type="text" hidden name="amount" value=<%=amount %> />
+            <input type="text" hidden name="backend_url" value=<%=backend_url %> />
+            <input type="text" hidden name="redirect_url" value=<%=redirect_url %>/>
+            <input type="text" hidden name="bank_code" value=<%=bank_code %>/>
+            <input type="text" hidden name="sign" value=<%=sign %> />
+            <input type="text" hidden name="remarks" value=<%=remarks %> />
+            <input type="submit" hidden id="submit">
+        </form>
+    </div>
+    <script type="text/javascript">
+        setTimeout(() => {
+            document.getElementById("submit").click();
+        }, 2000)
+    </script>
+
+</body>
+
+
+</html>
