@@ -92,8 +92,13 @@ app.get('/', logger, async(req, res) => {
     res.render('home', data);
 })
 
+app.post('/callback', (req, res) => {
+    res.json(req.body)
+    res.send(req.originalUrl + ' callback ok')
+})
+
 app.get('/callback', (req, res) => {
-    res.send('callback ok')
+    res.send(req.originalUrl + ' callback ok')
 })
 
 app.get('/index', (req, res) => {
